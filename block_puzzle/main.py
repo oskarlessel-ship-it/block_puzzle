@@ -28,7 +28,6 @@ PREVIEW_CELL = CELL_SIZE // 2
 
 
 def draw_field(screen, field, font, score, shapes, selected_index, game_over):
-    """Joonistame välja, täidetud plokid ja all kujundid."""
     screen.fill(BG_COLOR)
     
     for x in range(GRID_WIDTH):
@@ -65,7 +64,6 @@ def draw_field(screen, field, font, score, shapes, selected_index, game_over):
 
 
 def draw_shape_preview(screen, shape: Shape, index: int, selected_index: int):
-    """Joonistame ühe kujundi eelvaate all (kolm pesa)."""
     slot_width = WINDOW_WIDTH // 3
     base_x = index * slot_width
     area_y = GRID_HEIGHT * CELL_SIZE + 20
@@ -100,7 +98,6 @@ def draw_shape_preview(screen, shape: Shape, index: int, selected_index: int):
 
 
 def grid_pos_from_mouse(pos):
-    """Muudame hiire koordinaadi (px) ruudustiku koordinaatideks (gx, gy)."""
     mx, my = pos
     if my >= GRID_HEIGHT * CELL_SIZE:
         return None
@@ -112,7 +109,6 @@ def grid_pos_from_mouse(pos):
 
 
 def preview_index_from_mouse(pos):
-    """Millisest kolmest pesast klikk tuli? (0, 1 või 2)"""
     mx, my = pos
     if my < GRID_HEIGHT * CELL_SIZE:
         return None
@@ -195,4 +191,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
