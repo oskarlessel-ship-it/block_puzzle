@@ -1,4 +1,3 @@
-# pieces.py
 # Kõik plokid / kujundid ja juhuslik valik
 
 from typing import List, Tuple
@@ -29,4 +28,5 @@ SHAPES: List[Shape] = [
 def get_random_shapes(count: int = 3) -> List[Shape]:
     """Tagastame 'count' juhuslikku kuju (võib korduda)."""
     return [random.choice(SHAPES) for _ in range(count)]
+
 
