@@ -9,11 +9,6 @@ Block = Tuple[int, int]
 
 
 class Shape:
-    """Üks kuju (block).
-    blocks – list (dx, dy) positsioone (nihe vasakust ülemisest nurgast)
-    color – RGB värv
-    name  – nimi (lihtsalt info jaoks)
-    """
 
     def __init__(self, name: str, blocks: List[Block], color: Color):
         self.name = name
@@ -21,7 +16,6 @@ class Shape:
         self.color = color
 
 
-# Väike komplekt kujundeid Block Blast stiilis (mitte täpselt samad)
 SHAPES: List[Shape] = [
     Shape("2x2 ruut", [(0, 0), (1, 0), (0, 1), (1, 1)], (255, 215, 0)),
     Shape("3 joon", [(0, 0), (1, 0), (2, 0)], (0, 200, 255)),
@@ -35,3 +29,4 @@ SHAPES: List[Shape] = [
 def get_random_shapes(count: int = 3) -> List[Shape]:
     """Tagastame 'count' juhuslikku kuju (võib korduda)."""
     return [random.choice(SHAPES) for _ in range(count)]
+
