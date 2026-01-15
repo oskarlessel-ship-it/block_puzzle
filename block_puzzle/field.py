@@ -1,12 +1,11 @@
-# field.py
-# Välja (grid) logika: ruudustik, asetamine, ridade/veergude kustutamine, käikude kontroll.
+# Välja  logika: ruudustik, asetamine, ridade/veergude kustutamine, käikude kontroll.
 
 from typing import List, Optional, Tuple
 from pieces import Shape
 
-GRID_WIDTH = 10    # veergude arv
-GRID_HEIGHT = 10   # ridade arv
-CELL_SIZE = 40     # ühe ruudu suurus pikslites
+GRID_WIDTH = 10   
+GRID_HEIGHT = 10
+CELL_SIZE = 40 
 
 Color = Tuple[int, int, int]
 Field = List[List[Optional[Color]]]
@@ -18,12 +17,10 @@ def create_field() -> Field:
 
 
 def inside(x: int, y: int) -> bool:
-    """Kas koordinaat on välja sees?"""
     return 0 <= x < GRID_WIDTH and 0 <= y < GRID_HEIGHT
 
 
 def can_place(field: Field, shape: Shape, gx: int, gy: int) -> bool:
-    """Kontrollime, kas kuju saab asetada väljal punkti (gx, gy) (vasak ülemine nurk)."""
     for dx, dy in shape.blocks:
         x = gx + dx
         y = gy + dy
@@ -35,7 +32,6 @@ def can_place(field: Field, shape: Shape, gx: int, gy: int) -> bool:
 
 
 def place_shape(field: Field, shape: Shape, gx: int, gy: int) -> None:
-    """Asetame kuju väljal – kirjutame ruutudesse värvi."""
     for dx, dy in shape.blocks:
         x = gx + dx
         y = gy + dy
@@ -43,19 +39,16 @@ def place_shape(field: Field, shape: Shape, gx: int, gy: int) -> None:
 
 
 def clear_full_lines(field: Field) -> int:
-    """Kustutame kõik täielikult täidetud read ja veerud.
-    Tagastame, mitu rida+veeru kokku eemaldati.
-    """
+
     lines_cleared = 0
 
-    # Ridadest läbi
+
     for y in range(GRID_HEIGHT):
         if all(field[y][x] is not None for x in range(GRID_WIDTH)):
             for x in range(GRID_WIDTH):
                 field[y][x] = None
             lines_cleared += 1
 
-    # Veergudest läbi
     for x in range(GRID_WIDTH):
         if all(field[y][x] is not None for y in range(GRID_HEIGHT)):
             for y in range(GRID_HEIGHT):
@@ -75,3 +68,4 @@ def has_any_moves(field: Field, shapes) -> bool:
                 if can_place(field, shape, x, y):
                     return True
     return False
+
